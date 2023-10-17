@@ -697,9 +697,8 @@ impl<K: 'static> OAuth2<K> {
             .adapter
             .authorization_uri(&self.0.config, &state, scopes, extras)?;
         cookies.add_private(
-            Cookie::build(STATE_COOKIE_NAME, state)
-                .same_site(SameSite::Lax)
-                .finish(),
+            Cookie::build((STATE_COOKIE_NAME, state))
+                .same_site(SameSite::Lax),
         );
         Ok(Redirect::to(uri))
     }
