@@ -116,6 +116,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "atomic-waker"
+version = "1.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1505bd5d3d116872e7271a6d4e16d81d0c8570876c8de68093a09ac269d8aac0"
+
+[[package]]
 name = "autocfg"
 version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -525,6 +531,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "h2"
+version = "0.4.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fa82e28a107a8cc405f0839610bdc9b15f1e25ec7d696aa5cf173edbcb1486ab"
+dependencies = [
+ "atomic-waker",
+ "bytes",
+ "fnv",
+ "futures-core",
+ "futures-sink",
+ "http 1.1.0",
+ "indexmap",
+ "slab",
+ "tokio",
+ "tokio-util",
+ "tracing",
+]
+
+[[package]]
 name = "hashbrown"
 version = "0.14.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -632,7 +657,7 @@ dependencies = [
  "futures-channel",
  "futures-core",
  "futures-util",
- "h2",
+ "h2 0.3.26",
  "http 0.2.12",
  "http-body 0.4.6",
  "httparse",
@@ -655,9 +680,11 @@ dependencies = [
  "bytes",
  "futures-channel",
  "futures-util",
+ "h2 0.4.5",
  "http 1.1.0",
  "http-body 1.0.0",
  "httparse",
+ "httpdate",
  "itoa",
  "pin-project-lite",
  "smallvec",
@@ -874,6 +901,7 @@ dependencies = [
  "futures-util",
  "http 1.1.0",
  "httparse",
+ "log",
  "memchr",
  "mime",
  "spin",
@@ -1187,6 +1215,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "ref-swap"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "09c30c54dffee5b40af088d5d50aa3455c91a0127164b51f0215efc4cb28fb3c"
+
+[[package]]
 name = "regex"
 version = "1.10.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1310,8 +1344,8 @@ dependencies = [
  "pin-project-lite",
  "rand",
  "ref-cast",
- "rocket_codegen",
- "rocket_http",
+ "rocket_codegen 0.5.1",
+ "rocket_http 0.5.1",
  "serde",
  "state",
  "tempfile",
@@ -1319,6 +1353,52 @@ dependencies = [
  "tokio",
  "tokio-stream",
  "tokio-util",
+ "ubyte",
+ "version_check",
+ "yansi",
+]
+
+[[package]]
+name = "rocket"
+version = "0.6.0-dev"
+source = "git+https://github.com/fenhl/Rocket?branch=forms#b0c8472e7d7217cc3926a22426895b034be48fa5"
+dependencies = [
+ "async-stream",
+ "async-trait",
+ "binascii",
+ "bytes",
+ "cookie",
+ "either",
+ "figment",
+ "futures",
+ "http 1.1.0",
+ "hyper 1.3.1",
+ "hyper-util",
+ "indexmap",
+ "libc",
+ "memchr",
+ "multer",
+ "num_cpus",
+ "parking_lot",
+ "pin-project-lite",
+ "rand",
+ "ref-cast",
+ "ref-swap",
+ "rocket_codegen 0.6.0-dev",
+ "rocket_http 0.6.0-dev",
+ "rustls",
+ "serde",
+ "state",
+ "tempfile",
+ "thread_local",
+ "time",
+ "tinyvec",
+ "tokio",
+ "tokio-rustls",
+ "tokio-stream",
+ "tokio-util",
+ "tracing",
+ "tracing-subscriber",
  "ubyte",
  "version_check",
  "yansi",
@@ -1335,7 +1415,23 @@ dependencies = [
  "indexmap",
  "proc-macro2",
  "quote",
- "rocket_http",
+ "rocket_http 0.5.1",
+ "syn",
+ "unicode-xid",
+ "version_check",
+]
+
+[[package]]
+name = "rocket_codegen"
+version = "0.6.0-dev"
+source = "git+https://github.com/fenhl/Rocket?branch=forms#b0c8472e7d7217cc3926a22426895b034be48fa5"
+dependencies = [
+ "devise",
+ "glob",
+ "indexmap",
+ "proc-macro2",
+ "quote",
+ "rocket_http 0.6.0-dev",
  "syn",
  "unicode-xid",
  "version_check",
@@ -1369,6 +1465,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "rocket_http"
+version = "0.6.0-dev"
+source = "git+https://github.com/fenhl/Rocket?branch=forms#b0c8472e7d7217cc3926a22426895b034be48fa5"
+dependencies = [
+ "cookie",
+ "either",
+ "indexmap",
+ "memchr",
+ "pear",
+ "percent-encoding",
+ "ref-cast",
+ "serde",
+ "stable-pattern",
+ "state",
+ "time",
+ "tinyvec",
+ "uncased",
+]
+
+[[package]]
 name = "rocket_oauth2"
 version = "0.5.0"
 dependencies = [
@@ -1380,7 +1496,7 @@ dependencies = [
  "hyper-util",
  "log",
  "rand",
- "rocket",
+ "rocket 0.6.0-dev",
  "serde",
  "serde_json",
  "url",
@@ -1774,6 +1890,7 @@ dependencies = [
  "libc",
  "mio",
  "num_cpus",
+ "parking_lot",
  "pin-project-lite",
  "signal-hook-registry",
  "socket2",
@@ -1940,6 +2057,7 @@ dependencies = [
  "matchers",
  "nu-ansi-term",
  "once_cell",
+ "parking_lot",
  "regex",
  "sharded-slab",
  "smallvec",
@@ -2040,7 +2158,7 @@ version = "0.0.0"
 dependencies = [
  "anyhow",
  "reqwest",
- "rocket",
+ "rocket 0.5.1",
  "rocket_oauth2",
  "serde",
  "serde_json",
@@ -2055,7 +2173,7 @@ dependencies = [
  "hyper 1.3.1",
  "hyper-rustls",
  "hyper-util",
- "rocket",
+ "rocket 0.5.1",
  "rocket_oauth2",
  "serde",
  "serde_json",
